@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress VPS Deploy"
+  short_description: "Deploy WordPress on a VPS"
+  default_prompt: "Prepare this WordPress project for production on this VPS with nginx, PHP-FPM, MySQL or MariaDB, WP-CLI, WooCommerce, safe permissions, aliases, smoke tests, and a repeatable deploy script."
