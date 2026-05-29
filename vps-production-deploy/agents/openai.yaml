@@ -1,0 +1,3 @@
+display_name: VPS Production Deploy
+short_description: Deploy Node apps on a VPS
+default_prompt: Deploy this Node/Vite/Express/Prisma monorepo to production on this VPS using the configured domain, app directory, database values, systemd, nginx, HTTPS, and a repeatable deploy script.
