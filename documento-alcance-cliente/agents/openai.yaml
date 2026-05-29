@@ -1,0 +1,4 @@
+interface:
+  display_name: "Documento de Alcance"
+  short_description: "Crea alcances en Word para clientes"
+  default_prompt: "Use $documento-alcance-cliente to draft a concise client-ready scope document in Word before starting a project."

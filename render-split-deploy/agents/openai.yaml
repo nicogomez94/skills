@@ -1,0 +1,4 @@
+interface:
+  display_name: "Render Web Service Deploy"
+  short_description: "Single Render web service with Prisma migrations"
+  default_prompt: "Use $render-split-deploy to migrate this app to Render as one Web Service with the standard Prisma build command."

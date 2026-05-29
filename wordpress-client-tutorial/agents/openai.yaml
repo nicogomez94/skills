@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress Client Tutorial"
+  short_description: "Crea tutoriales editables para clientes WordPress"
+  default_prompt: "Usa $wordpress-client-tutorial para crear un tutorial de edicion de WordPress para un cliente y entregarlo en Google Docs."

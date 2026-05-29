@@ -1,0 +1,4 @@
+interface:
+  display_name: "SSH VPS Key Setup"
+  short_description: "Configure SSH key access for VPS hosts"
+  default_prompt: "Use $ssh-vps-key-setup to configure SSH key access for a VPS after asking me for any missing connection details."

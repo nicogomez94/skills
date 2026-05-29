@@ -1,0 +1,4 @@
+interface:
+  display_name: "Contact Form Email Integration"
+  short_description: "Connect forms to the central email service"
+  default_prompt: "Use $contact-form-email-integration to connect this app form to the central email microservice."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Footer Credit Link"
+  short_description: "Add a subtle ZigoDev footer credit link"
+  default_prompt: "Use $footer-credit-link to add a visible, understated Hecho por ZigoDev footer link."

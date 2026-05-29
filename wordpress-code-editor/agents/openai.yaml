@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress Code Editor"
+  short_description: "Edit WordPress only through versioned code"
+  default_prompt: "Use $wordpress-code-editor to implement this WordPress change entirely in code."
