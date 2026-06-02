@@ -41,6 +41,14 @@ DEPLOY_SCRIPT=/usr/local/bin/deploy-<slug>.sh
 
 If the user provided explicit values, use them instead of generated defaults.
 
+## Resource Budget
+
+Assume the VPS has 1 GB RAM unless the user provides a different size.
+- Do not run more than two background terminals or long-lived sessions at once.
+- Prefer serial execution over parallel installs, builds, or watchers.
+- Keep Node, PostgreSQL, nginx, and systemd tuning conservative.
+- Close `ssh`, `tail -f`, `journalctl -f`, and similar watchers as soon as the needed output is captured.
+
 ## Safe Command Sequence
 
 1. Inspect context:

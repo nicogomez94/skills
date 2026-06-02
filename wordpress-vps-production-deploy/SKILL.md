@@ -1,6 +1,6 @@
 ---
 name: wordpress-vps-production-deploy
-description: Deploy an existing WordPress project to production on a Linux VPS. Use when Codex must act as SRE/DevOps for WordPress on Ubuntu with nginx, PHP-FPM, MySQL or MariaDB, WP-CLI, WooCommerce, custom themes, production wp-config.php, safe permissions, aliases, smoke tests, and a repeatable deploy script, without Docker, Apache, panels, destructive git resets, or overwriting an existing WordPress install.
+description: Deploy an existing WordPress project to production on a Linux VPS. Use when Codex must act as SRE/DevOps for WordPress on Ubuntu with nginx, PHP-FPM, MySQL or MariaDB, WP-CLI, WooCommerce, custom themes, production wp-config.php, safe permissions, aliases, smoke tests, and a repeatable deploy script, without Docker, Apache, panels, destructive git resets, or overwriting an existing WordPress install. Assume 1 GB RAM, keep resource use conservative, and do not keep more than two background terminals active at once.
 ---
 
 # WordPress VPS Production Deploy
@@ -24,6 +24,8 @@ Before changing the server:
   - `WP_ADMIN_EMAIL`: `admin@<domain>` if domain exists.
   - `WP_THEME_NAME`: use the provided value; if absent and `ferreteria-theme` exists, use `ferreteria-theme`.
 - Ask only if ambiguity could target the wrong app, domain, database, or theme.
+- Assume the VPS has only 1 GB RAM unless the user says otherwise.
+- Do not keep more than two background terminals or long-running sessions active at the same time. Prefer serial execution and close finished sessions promptly.
 
 Read [references/lemp-wordpress-vps.md](references/lemp-wordpress-vps.md) before executing. It contains the required command sequence, templates, idempotency checks, aliases, deploy script, smoke tests, and final report format.
 
@@ -36,6 +38,7 @@ Read [references/lemp-wordpress-vps.md](references/lemp-wordpress-vps.md) before
 - Do not delete databases, uploads, themes, plugins, or user code without explicit confirmation.
 - Do not use `git reset --hard` without explicit confirmation.
 - Avoid permissions `777`; keep Git usable while allowing WordPress to write `wp-content`.
+- Keep PHP-FPM, MySQL/MariaDB, and nginx tuned conservatively for a 1 GB RAM VPS.
 - Do not print full database or admin passwords in the final report or logs.
 - Optimize PHP-FPM and PHP limits for a 1 GB RAM VPS.
 - Finish with HTTP, `/wp-json`, wp-admin, WooCommerce, and active theme checks.

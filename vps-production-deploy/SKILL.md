@@ -1,6 +1,6 @@
 ---
 name: vps-production-deploy
-description: Deploy a Node.js monorepo to production on a Linux VPS. Use when Codex must act as SRE/DevOps on the current VPS for npm workspaces with React/Vite client, Express server, Prisma, PostgreSQL, nginx, systemd, certbot HTTPS, production env files, repeatable deploy scripts, gitignore hardening, shell aliases, and real command execution without Docker.
+description: Deploy a Node.js monorepo to production on a Linux VPS. Use when Codex must act as SRE/DevOps on the current VPS for npm workspaces with React/Vite client, Express server, Prisma, PostgreSQL, nginx, systemd, certbot HTTPS, production env files, repeatable deploy scripts, gitignore hardening, shell aliases, and real command execution without Docker. Assume 1 GB RAM, keep resource use conservative, and do not keep more than two background terminals active at once.
 ---
 
 # VPS Production Deploy
@@ -21,6 +21,8 @@ Before making changes:
   - `API_PORT`: `3001`.
   - `NODE_VERSION`: `22`.
 - Continue with reasonable defaults when ambiguity is low. Ask only when proceeding could target the wrong project, domain, or database.
+- Assume the VPS has only 1 GB RAM unless the user says otherwise.
+- Do not keep more than two background terminals or long-running sessions active at the same time. Prefer serial execution and close finished sessions promptly.
 
 Read [references/node-vite-prisma-vps.md](references/node-vite-prisma-vps.md) before executing the deployment. It contains the required command sequence, config templates, deploy script shape, aliases, smoke tests, and idempotency rules.
 
@@ -31,6 +33,7 @@ Read [references/node-vite-prisma-vps.md](references/node-vite-prisma-vps.md) be
 - Do not use Docker.
 - Do not revert user changes in the repo.
 - Use `sudo` where system paths require it.
+- Keep installs, builds, and service tuning conservative for a 1 GB RAM VPS.
 - Keep secrets out of git. Ensure `.env`, uploads, build output, logs, and local deployment artifacts are ignored.
 - Use `npm ci` when a lockfile exists; otherwise use `npm install`.
 - For Prisma, run `npm run db:generate --workspace server` and `npx prisma migrate deploy` from the server workspace, adapting only if the repo exposes an equivalent script.

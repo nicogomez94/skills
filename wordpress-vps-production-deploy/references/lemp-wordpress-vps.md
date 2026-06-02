@@ -14,6 +14,14 @@ Default stack:
 - Repeatable deploy script at `/usr/local/bin/deploy-<slug>.sh`.
 - Aliases: `gs`, `dirgit`, `redeploy`, `codexf`.
 
+## Resource Budget
+
+Assume the machine has 1 GB RAM unless the user provides a larger size.
+- Keep background terminals and long-running watchers to at most two at a time.
+- Prefer serial execution when running installs, migrations, or service checks.
+- Tune PHP-FPM and MySQL/MariaDB conservatively.
+- Stop watchers like `journalctl -f` or `tail -f` as soon as the needed output is captured.
+
 ## Variables
 
 Use these names in shell snippets and generated files:
