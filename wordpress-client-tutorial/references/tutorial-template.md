@@ -1,128 +1,80 @@
-# Plantilla de tutorial WordPress para cliente
+# Plantilla simple de tutorial para cliente
 
-Usar esta estructura como base. Adaptar, borrar o reordenar segun el sitio real.
+Usar esta estructura como base. Borrar todo lo que no aplique. El resultado final debe ser corto, claro y sin terminos tecnicos salvo que sean nombres exactos del panel.
 
 ## Titulo
 
-Tutorial de administracion del sitio [NOMBRE DEL SITIO]
+Guia rapida para editar [NOMBRE DEL SITIO]
 
-## 1. Acceso al panel
+## 1. Como entrar
 
-- Dominio del sitio: [DOMINIO EXACTO]
-- Panel de administracion: [URL EXACTA /wp-admin/]
+- Sitio: [DOMINIO EXACTO]
+- Panel: [URL EXACTA /wp-admin/]
 - Usuario: [USUARIO]
 - Contrasena: [CONTRASENA]
-- Rol de acceso: [ROL]
 
-Nota: si el navegador pide guardar la contrasena, hacerlo solo en una computadora segura.
+Entrar al panel, completar usuario y contrasena, y hacer clic en `Acceder`.
 
-## 2. Como esta organizado el sitio
+## 2. Antes de cambiar algo
 
-| Parte del sitio | Donde se edita | Editable por el cliente | Observaciones |
-| --- | --- | --- | --- |
-| Header / menu | [Ruta en WordPress] | Si / Parcial / No | [Detalle] |
-| Inicio | [Ruta en WordPress] | Si / Parcial / No | [Detalle] |
-| Seccion principal | [Ruta en WordPress] | Si / Parcial / No | [Detalle] |
-| Formularios | [Ruta en WordPress] | Si / Parcial / No | [Detalle] |
-| Footer | [Ruta en WordPress] | Si / Parcial / No | [Detalle] |
+- Abrir la pagina del sitio en otra pestana para comparar antes y despues.
+- Cambiar solo el contenido necesario.
+- Guardar y revisar el resultado.
+- Si algo no aparece en el panel, pedir ayuda.
 
-## 3. Reglas simples antes de editar
+## 3. Cambiar textos de una pagina
 
-- Cambiar textos e imagenes sin modificar estructuras si el editor no lo pide.
-- Revisar enlaces de botones despues de cambiarlos.
-- Usar imagenes livianas y de buena calidad.
-- No borrar paginas, plugins, menus o campos sin confirmar.
-- Guardar cambios y revisar el resultado en una pestana nueva.
+1. Ir a `Paginas`.
+2. Abrir la pagina que se quiere editar.
+3. Cambiar el texto necesario.
+4. Hacer clic en `Actualizar`.
+5. Revisar la pagina publicada.
 
-## 4. Editar paginas
+## 4. Cambiar imagenes
 
-1. Entrar al panel.
-2. Ir a `Paginas > Todas las paginas`.
-3. Abrir la pagina correspondiente.
-4. Editar los campos o bloques indicados.
-5. Guardar con `Actualizar`.
-6. Revisar la pagina publicada.
+1. Ir a la pagina o seccion donde esta la imagen.
+2. Elegir `Reemplazar` o `Cambiar imagen`, si aparece esa opcion.
+3. Subir la nueva imagen o elegir una de `Medios`.
+4. Guardar con `Actualizar`.
+5. Revisar que se vea bien en celular y computadora.
 
-Incluir aca una subseccion por cada pagina importante:
+Recomendacion simple: usar imagenes claras y livianas. Si una imagen pesa mucho, conviene pedir ayuda para comprimirla.
 
-### Pagina [NOMBRE]
+## 5. Cambiar productos
 
-- Ruta: [Ruta exacta en WordPress]
-- Se puede editar: [textos / imagenes / botones / secciones]
-- No tocar: [partes delicadas]
-- Pasos especificos:
-  1. [Paso]
-  2. [Paso]
-  3. [Paso]
-
-## 5. Editar menu y navegacion
-
-1. Ir a [ruta real: Apariencia > Menus / Editor del sitio / Personalizar].
-2. Seleccionar el menu correspondiente.
-3. Agregar, quitar o reordenar enlaces.
-4. Guardar cambios.
-5. Revisar en escritorio y celular.
-
-## 6. Cambiar imagenes
-
-1. Ir a `Medios > Anadir nuevo` o editar desde la pagina correspondiente.
-2. Subir la imagen.
-3. Completar texto alternativo si corresponde.
-4. Reemplazar la imagen en la seccion indicada.
-5. Guardar y revisar.
-
-Recomendacion de tamanos:
-
-- Imagen principal: [tamano sugerido]
-- Tarjetas o miniaturas: [tamano sugerido]
-- Logos o iconos: [tamano sugerido]
-
-## 7. Formularios
-
-1. Ir a [ruta del plugin de formularios].
-2. Abrir el formulario [nombre].
-3. Editar campos solo si hace falta.
-4. Revisar destinatarios de correo.
-5. Guardar y enviar una prueba.
-
-## 8. Entradas, novedades o productos
-
-Usar esta seccion solo si aplica.
-
-### Entradas o novedades
-
-1. Ir a `Entradas`.
-2. Crear o editar una entrada.
-3. Revisar titulo, contenido, imagen destacada, categoria y extracto.
-4. Publicar o actualizar.
-
-### Productos WooCommerce
+Usar esta seccion solo si el sitio tiene tienda.
 
 1. Ir a `Productos`.
-2. Crear o editar un producto.
-3. Revisar nombre, descripcion, precio, imagen, galeria, categorias y stock.
-4. Actualizar.
+2. Abrir el producto que se quiere cambiar.
+3. Revisar nombre, descripcion, precio, imagen y stock.
+4. Guardar con `Actualizar`.
+5. Revisar el producto en el sitio.
 
-## 9. SEO basico
+## 6. Revisar pedidos
 
-Si el sitio usa un plugin SEO:
+Usar esta seccion solo si el sitio recibe compras.
 
-1. Abrir la pagina o entrada.
-2. Buscar el bloque del plugin SEO.
-3. Editar titulo SEO y descripcion.
-4. Mantener textos claros y reales.
+1. Ir a `Pedidos`.
+2. Abrir el pedido.
+3. Revisar datos del cliente, productos y estado.
+4. Cambiar el estado solo si corresponde.
+5. Guardar.
 
-## 10. Que cambios pedir al desarrollador
+## 7. Cambiar datos de contacto
+
+Usar esta seccion solo si el sitio tiene un lugar claro para editar contacto.
+
+1. Ir a [RUTA EXACTA DEL PANEL].
+2. Cambiar telefono, mail, WhatsApp, direccion o redes.
+3. Guardar.
+4. Revisar el sitio.
+
+## 8. Cuando pedir ayuda
 
 Pedir ayuda para:
 
-- Cambios de estructura o diseno general.
-- Nuevas secciones complejas.
-- Cambios en formularios que afecten envios.
-- Instalacion, baja o configuracion de plugins.
-- Cambios de dominio, hosting, correo o seguridad.
-- Errores, pantallas en blanco o actualizaciones delicadas.
-
-## 11. Cierre
-
-Ante cualquier duda, hacer una captura de pantalla de la seccion y explicar que se quiere cambiar antes de editar partes sensibles.
+- Cambiar el diseno.
+- Agregar secciones nuevas.
+- Cambiar menu, pie de pagina o botones fijos.
+- Configurar pagos, envios, dominio o correo.
+- Resolver errores.

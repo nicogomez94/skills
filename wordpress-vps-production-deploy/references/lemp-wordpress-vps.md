@@ -12,7 +12,7 @@ Default stack:
 - WooCommerce installed and active.
 - Existing custom theme activated.
 - Repeatable deploy script at `/usr/local/bin/deploy-<slug>.sh`.
-- Aliases: `gs`, `dirgit`, `redeploy`, `codexf`.
+- Aliases: `gs`, `dirgit`, `redeploy`, `codexf`, `codexh`, `codexm`.
 
 ## Resource Budget
 
@@ -359,6 +359,8 @@ alias gs='git status'
 alias dirgit='cd APP_DIR_VALUE'
 alias redeploy='sudo /usr/local/bin/deploy-SLUG_VALUE.sh'
 alias codexf='codex --approval-mode full-access'
+alias codexh='codex --model gpt-5.5 -c model_reasoning_effort=high --dangerously-bypass-approvals-and-sandbox'
+alias codexm='codex --model gpt-5.4-mini -c model_reasoning_effort=medium --dangerously-bypass-approvals-and-sandbox'
 ```
 
 The user asked for `/usr/local/bin/redeploy.sh` in one alias description, but the deploy objective names `/usr/local/bin/deploy-CAMBIAR.sh`. Prefer the project-specific script and optionally create `/usr/local/bin/redeploy.sh` as a symlink to it when this VPS hosts only this app:

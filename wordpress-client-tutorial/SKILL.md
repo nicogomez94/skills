@@ -1,13 +1,24 @@
 ---
 name: wordpress-client-tutorial
-description: Create a client-facing Google Docs tutorial for editing an existing WordPress website from the admin panel. Use when the user asks for a WordPress client manual, tutorial, handoff guide, editable/non-editable site map, admin editing steps, wp-admin access instructions, or a Google Docs document that explains exactly where to log in, what username/password the client should use, and how to update pages, menus, images, forms, posts, products, plugins, or reusable site sections.
+description: Create a short, simple, client-facing Spanish tutorial for editing an existing WordPress website from the admin panel. Use when the user asks for a website editing manual, client handoff guide, admin access instructions, or a Google Docs tutorial explaining only the essential steps to log in and make common content changes without technical jargon.
 ---
 
 # WordPress Client Tutorial
 
 ## Goal
 
-Create a clear, non-technical tutorial in Spanish for a client who needs to edit their WordPress website from the admin panel. Deliver it as a Google Docs document and keep a local Markdown copy.
+Create a very simple Spanish tutorial for a non-technical client who only needs to know how to enter the admin panel and make common changes.
+
+Default style:
+
+- Short, warm, and practical.
+- Easy to scan.
+- No long explanations.
+- No technical terms such as "WordPress", "WooCommerce", "theme", "plugin", "template", "custom post type", "shortcode", "ACF", or "deployment" unless the client must click a menu with that exact name.
+- Say "panel", "sitio", "tienda", "productos", "paginas", "imagenes", "pedidos", or the exact menu label the client will see.
+- Include only what the client is expected to change.
+- Prefer steps with 3-6 actions. Avoid exhaustive documentation.
+- Deliver as a Google Docs document and keep a local Markdown copy.
 
 ## Required Inputs
 
@@ -15,50 +26,54 @@ Collect or infer these before writing the document:
 
 - Production domain and exact admin URL, normally `https://domain.com/wp-admin/`.
 - Client username and password to include in the tutorial, only when the user explicitly provides them.
-- Site name, client/company name, and desired tutorial title.
-- WordPress access level the client will have, such as Administrator, Editor, Shop Manager, or Author.
+- Site name or client/company name.
 - Any sections the user wants emphasized or excluded.
 
 If credentials are missing, do not invent them. Insert a visible placeholder such as `[USUARIO A CONFIRMAR]` and `[CONTRASENA A CONFIRMAR]`, and tell the user these fields need confirmation.
 
 ## Inspection Workflow
 
-1. Inspect the WordPress project, theme, and available site structure before drafting. Prefer repo files when available:
+Inspect enough of the project to avoid wrong instructions, but keep the final tutorial short.
+
+1. Inspect the project, theme, and visible site structure before drafting. Prefer repo files when available:
    - `wp-content/themes/<theme>/`
    - templates and template parts
    - `functions.php`
-   - custom post type, taxonomy, shortcode, block, ACF, WooCommerce, and menu registrations
-   - CSS/JS only when it reveals component names or site areas
-2. If live site access or screenshots are available, use them to confirm the visible page layout and admin labels. Do not rely on guesses when the site has custom fields, builders, or WooCommerce.
-3. Map the site into client-friendly areas:
-   - Header, navigation, hero, main pages, repeated blocks, footer, forms, blog/news, products/services, legal pages, SEO basics.
-   - Mark each area as editable from the panel, partially editable, or not editable from the panel.
-4. Identify the safest edit path for each editable area:
-   - Pages: `Paginas > Todas las paginas > Editar`
-   - Posts/news: `Entradas`
-   - Menus: `Apariencia > Menus` or Site Editor navigation, depending on theme
-   - Media: `Medios`
-   - Forms: plugin-specific section, such as Contact Form 7, WPForms, Gravity Forms, Elementor Forms
-   - WooCommerce: `Productos`, `Pedidos`, `Cupones`, `Ajustes`
-   - ACF/custom fields: explain field labels as they appear to the client
-   - Elementor/Divi/blocks: name the editor and describe only the needed actions
-5. Separate "what the client can edit" from "what should be requested as a developer change." Be explicit when a change requires code, layout work, plugin configuration, or deployment.
+   - admin menu labels, custom content labels, product/order areas, and form labels
+2. If live site access or screenshots are available, use them to confirm what the client sees.
+3. Identify only the common edit paths the client likely needs, such as:
+   - `Paginas`
+   - `Medios`
+   - `Productos`
+   - `Pedidos`
+   - `Ajustes > Datos de contacto`
+   - form section names only if present
+4. Mention fixed or delicate areas only in a brief final help section. Do not build a long editable/non-editable map unless the user explicitly asks for it.
 
 ## Document Requirements
 
-Use `references/tutorial-template.md` as the content skeleton. Adapt headings to the actual site and remove sections that do not apply.
+Use `references/tutorial-template.md` as the content skeleton. Adapt it to the actual site and remove anything that does not apply.
 
 The Google Docs tutorial must include:
 
 - Title with site/client name.
-- Short intro in plain Spanish.
 - Exact login URL, username, and password or clearly marked placeholders.
-- A site map/table showing each visible section, where it is edited, and whether the client should edit it.
-- Step-by-step instructions for the common edits the client will need.
-- Notes about image sizes, links, buttons, SEO titles, forms, and backups when relevant.
-- A final "Cuando pedir ayuda" section for code-only, layout, plugin, hosting, domain, email, or security changes.
+- A short "Antes de editar" note.
+- 3-6 sections for common changes only.
+- A final "Cuando pedir ayuda" section with a short list.
 
-Keep the tone practical and calm. Avoid developer jargon unless the client will see the same label in WordPress.
+Avoid tables by default. Use a small table only if it makes the tutorial clearly easier to read.
+
+Keep the tutorial compact. A good default length is 1-3 pages in Google Docs.
+
+Do not include:
+
+- Long site maps.
+- Plugin or builder explanations.
+- Technical labels unless they are exact visible menu labels.
+- Developer-facing observations from code inspection.
+- Long lists of things the client should not touch.
+- SEO, backups, security, hosting, or domain explanations unless directly requested.
 
 ## Google Docs Delivery
 
@@ -77,7 +92,7 @@ Before final delivery, confirm:
 
 - The domain/admin URL is exact and uses the production domain, not a local URL.
 - Credentials are either user-provided or visible placeholders.
-- The editable/non-editable table matches the inspected theme/site structure.
-- Every instruction names the actual WordPress menu path the client will click.
-- No unsupported claims are made about plugins, builders, products, or forms.
-- The document is understandable for a non-technical client.
+- Every instruction names the actual menu path the client will click.
+- The tutorial only includes actions the client is expected to perform.
+- Technical language has been removed unless unavoidable.
+- The final document is short, legible, and useful for making a change quickly.

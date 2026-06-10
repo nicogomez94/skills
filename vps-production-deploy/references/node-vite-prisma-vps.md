@@ -325,6 +325,8 @@ alias gl='git log'
 alias dirgit='cd APP_DIR_VALUE'
 alias redeploy='sudo /usr/local/bin/deploy-SLUG_VALUE.sh'
 alias codexf='codex --approval-mode full-access'
+alias codexh='codex --model gpt-5.5 -c model_reasoning_effort=high --dangerously-bypass-approvals-and-sandbox'
+alias codexm='codex --model gpt-5.4-mini -c model_reasoning_effort=medium --dangerously-bypass-approvals-and-sandbox'
 ```
 
 Append only if each alias is missing.
