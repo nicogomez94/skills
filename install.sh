@@ -6,6 +6,8 @@ REPO_URL="${SKILLS_REPO:-https://github.com/nicogomez94/skills.git}"
 BRANCH="${SKILLS_BRANCH:-main}"
 CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
 SKILLS_DIR="${CODEX_SKILLS_DIR:-$CODEX_HOME/skills}"
+LOCK_DIR="${CODEX_SKILLS_LOCK_DIR:-$CODEX_HOME/locks}"
+LOCK_FILE="${LOCK_DIR}/skills-install.lock"
 ALLOW_REMOTE_CHANGE="${SKILLS_ALLOW_REMOTE_CHANGE:-0}"
 ALLOW_DIRTY="${SKILLS_ALLOW_DIRTY:-0}"
 
@@ -19,10 +21,11 @@ info() {
 }
 
 mkdir -p "$CODEX_HOME"
+mkdir -p "$LOCK_DIR"
 mkdir -p "$SKILLS_DIR"
 
 if command -v flock >/dev/null 2>&1; then
-  exec 9>"$SKILLS_DIR/.install.lock"
+  exec 9>"$LOCK_FILE"
   flock -n 9 || die "another skills install/update is already running in $SKILLS_DIR"
 fi
 
@@ -40,7 +43,9 @@ if [ -d "$SKILLS_DIR/.git" ]; then
     git -C "$SKILLS_DIR" remote set-url origin "$REPO_URL"
   fi
 
-  if [ -n "$(git -C "$SKILLS_DIR" status --porcelain)" ] && [ "$ALLOW_DIRTY" != "1" ]; then
+  dirty_status="$(git -C "$SKILLS_DIR" status --porcelain --untracked-files=all | awk '!($0 ~ /^\?\? \.install\.lock$/)')"
+  if [ -n "$dirty_status" ] && [ "$ALLOW_DIRTY" != "1" ]; then
+    printf '%s\n' "$dirty_status" >&2
     die "local changes exist in $SKILLS_DIR. Commit, stash, or clean them first, or set SKILLS_ALLOW_DIRTY=1 if you intentionally want to proceed."
   fi
 
