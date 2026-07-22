@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Prototype"
+  short_description: "Prototipos frontend para clientes"
+  default_prompt: "Use $frontend-prototype to crear un prototipo frontend en HTML/CSS/JS puro, en español, con animaciones de entrada en todas las secciones al hacer scroll, y listo para Render Free con deploy por Render CLI y URL viva al final."

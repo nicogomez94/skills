@@ -317,15 +317,39 @@ sudo chmod +x "$DEPLOY_SCRIPT"
 
 Prefer writing the script with a heredoc from Codex using the resolved values.
 
-12. Add shell aliases idempotently to the user's shell rc file (`~/.bashrc` and `~/.zshrc` if present, otherwise `~/.bashrc`):
+12. Add shell aliases idempotently to the user's shell rc file (`~/.bashrc` and `~/.zshrc` if present, otherwise `~/.bashrc`), matching the local Mac aliases for Git and Codex:
 
 ```bash
+alias g='git'
+alias ga='git add'
+alias gaa='git add --all'
+alias gb='git branch'
+alias gba='git branch --all'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gf='git fetch'
 alias gs='git status'
+alias gss='git status --short'
 alias gl='git log'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gpl='git pull'
+alias gr='git remote -v'
+alias grb='git rebase'
+alias grbi='git rebase -i'
+alias gre='git restore'
+alias gres='git restore --staged'
+alias gst='git stash'
+alias gstp='git stash pop'
 alias dirgit='cd APP_DIR_VALUE'
 alias redeploy='sudo /usr/local/bin/deploy-SLUG_VALUE.sh'
-alias codexf='codex --approval-mode full-access'
-alias codexh='codex --model gpt-5.5 -c model_reasoning_effort=high --dangerously-bypass-approvals-and-sandbox'
+alias codexf='codex --dangerously-bypass-approvals-and-sandbox'
+alias codexh='codex --model gpt-5.6 -c model_reasoning_effort=high --dangerously-bypass-approvals-and-sandbox'
 alias codexm='codex --model gpt-5.4-mini -c model_reasoning_effort=medium --dangerously-bypass-approvals-and-sandbox'
 ```
 
