@@ -38,4 +38,5 @@ Read [references/node-vite-prisma-vps.md](references/node-vite-prisma-vps.md) be
 - Use `npm ci` when a lockfile exists; otherwise use `npm install`.
 - For Prisma, run `npm run db:generate --workspace server` and `npx prisma migrate deploy` from the server workspace, adapting only if the repo exposes an equivalent script.
 - Enable HTTPS with certbot only when the domain resolves to this VPS.
+- Treat the deploy as failed if the rendered storefront, built assets, or homepage response still contains the WooCommerce placeholder text `Great things are on the horizon`. Search for that text before finishing, and if it appears, trace it to the active theme, landing page template, homepage content, or environment-specific fallback instead of marking the deploy done.
 - Finish with local and domain smoke tests and report exact service names, paths, aliases, and any skipped steps.
