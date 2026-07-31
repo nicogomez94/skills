@@ -210,6 +210,13 @@ sudo -u www-data wp --path="$APP_DIR" option update siteurl "https://$DOMAIN"
 
 Use HTTP instead when HTTPS is skipped.
 
+If the site should be Spanish, install and set the Spanish locale explicitly:
+
+```bash
+sudo -u www-data wp --path="$APP_DIR" language core install es_ES || true
+sudo -u www-data wp --path="$APP_DIR" option update WPLANG es_ES
+```
+
 ## Stage 7: Theme
 
 Explain that this verifies and activates the existing custom theme.
@@ -241,6 +248,19 @@ sudo -u www-data wp --path="$APP_DIR" plugin is-active woocommerce
 ```
 
 Do not run destructive WooCommerce setup or sample data import unless requested.
+
+If the project uses WooCommerce checkout, prefer the block editor page so the checkout does not depend on legacy shortcode markup or theme CSS overrides:
+
+```bash
+checkout_page_id="$(sudo -u www-data wp --path="$APP_DIR" option get woocommerce_checkout_page_id)"
+checkout_content="$(sudo -u www-data wp --path="$APP_DIR" post get "$checkout_page_id" --field=post_content 2>/dev/null || true)"
+
+if printf '%s' "$checkout_content" | grep -q '\[woocommerce_checkout\]'; then
+  sudo -u www-data wp --path="$APP_DIR" post update "$checkout_page_id" --post_content='<!-- wp:woocommerce/checkout /-->'
+fi
+```
+
+If the Checkout page is missing or empty, create or replace it with the WooCommerce Checkout block and keep the page title in Spanish when the site language is Spanish.
 
 ## Stage 9: nginx
 
