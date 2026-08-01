@@ -26,6 +26,10 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Animar con `IntersectionObserver` todas las secciones y bloques principales que se revelan al hacer scroll, usando una clase base como `.fade-in`.
 - Incluir un botón flotante de WhatsApp fijo en la esquina inferior derecha.
 - Mantener el prototipo listo para deploy estático en Render.
+- Asegurar que el hero inicial entre completo en el viewport en desktop y mobile; no debe desbordarse hacia abajo en la primera pantalla.
+- Limitar el tamaño del `h1`, el `line-height` y el `padding` del hero para evitar que el contenido principal quede por debajo del fold.
+- No usar `clamp()` para el tamaño de las fuentes del hero ni para los `h1`.
+- Definir tipografía del hero con tamaños fijos por media query en lugar de escalado fluido.
 
 ## Estructura esperada
 
@@ -48,6 +52,8 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Evitar paletas genéricas y elegir una combinación con personalidad.
 - Crear layouts fluidos, sin scroll horizontal y con buen contraste.
 - Mantener el botón de WhatsApp visible por encima del resto del contenido.
+- Ajustar el hero con altura máxima y espaciado contenido para que no exceda el alto visible, usando tamaños de fuente fijos por breakpoint.
+- Si el hero incluye imagen, ilustración o bloque de confianza, priorizar una composición compacta antes que un H1 gigante.
 
 ### JavaScript
 

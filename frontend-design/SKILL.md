@@ -36,7 +36,11 @@ Ground the design in four questions:
 - Compose layouts with asymmetry, overlap, diagonal flow, or controlled density when the concept supports it.
 - Create atmosphere with gradients, texture, grain, layered transparency, borders, and shadow treatment.
 - Avoid generic AI aesthetics, especially purple-on-white gradients, cookie-cutter cards, and copycat SaaS layouts.
-- make sure that the hero part of the landing page doenst exceeds the viewport height of the screen
+- Make sure the hero never exceeds the visible viewport height on first load.
+- Keep the hero title, copy, CTAs, and any supporting visual fully contained within the initial viewport on common desktop sizes.
+- If the hero needs to be taller for visual reasons, reduce type scale, tighten spacing, or move supporting content below the fold instead of letting it overflow.
+- Do not use `clamp()` for font sizes on hero text or headings.
+- Set `h1` and hero typography with explicit sizes per breakpoint instead of fluid `clamp()` scaling.
 
 ## Build Rules
 
@@ -45,6 +49,8 @@ When implementing a full project:
 - Use plain CSS, CSS Modules, or styled-components.
 - Do not use Tailwind or PostCSS.
 - Prefer scoped styles with `Component.module.css` when there are multiple components.
+- Keep hero typography on fixed breakpoint-driven sizes, not `clamp()`.
+- Avoid oversized H1s that push hero content below the fold on standard laptop viewport heights.
 
 When the project needs backend and database support:
 - Use PostgreSQL.

@@ -249,18 +249,25 @@ sudo -u www-data wp --path="$APP_DIR" plugin is-active woocommerce
 
 Do not run destructive WooCommerce setup or sample data import unless requested.
 
-If the project uses WooCommerce checkout, prefer the block editor page so the checkout does not depend on legacy shortcode markup or theme CSS overrides:
+If the project uses WooCommerce checkout, keep Cart and Checkout on the classic shortcode flow so shipping and payment plugins stay compatible:
 
 ```bash
 checkout_page_id="$(sudo -u www-data wp --path="$APP_DIR" option get woocommerce_checkout_page_id)"
 checkout_content="$(sudo -u www-data wp --path="$APP_DIR" post get "$checkout_page_id" --field=post_content 2>/dev/null || true)"
 
-if printf '%s' "$checkout_content" | grep -q '\[woocommerce_checkout\]'; then
-  sudo -u www-data wp --path="$APP_DIR" post update "$checkout_page_id" --post_content='<!-- wp:woocommerce/checkout /-->'
+if printf '%s' "$checkout_content" | grep -Eq 'woocommerce/checkout|\[woocommerce_checkout\]'; then
+  sudo -u www-data wp --path="$APP_DIR" post update "$checkout_page_id" --post_content='[woocommerce_checkout]'
+fi
+
+cart_page_id="$(sudo -u www-data wp --path="$APP_DIR" option get woocommerce_cart_page_id)"
+cart_content="$(sudo -u www-data wp --path="$APP_DIR" post get "$cart_page_id" --field=post_content 2>/dev/null || true)"
+
+if printf '%s' "$cart_content" | grep -Eq 'woocommerce/cart|\[woocommerce_cart\]'; then
+  sudo -u www-data wp --path="$APP_DIR" post update "$cart_page_id" --post_content='[woocommerce_cart]'
 fi
 ```
 
-If the Checkout page is missing or empty, create or replace it with the WooCommerce Checkout block and keep the page title in Spanish when the site language is Spanish.
+If the Checkout or Cart page is missing or empty, create or replace it with the classic WooCommerce shortcode and keep the page title in Spanish when the site language is Spanish.
 
 ## Stage 9: nginx
 

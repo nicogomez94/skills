@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress desde cero con dLocal"
+  short_description: "Convierte una maqueta HTML en un theme WordPress con WooCommerce"
+  default_prompt: "Usa $wordpress-dlocal-zero para convertir una carpeta HTML base, como maqueta, en un theme custom de WordPress con WooCommerce, manteniendo el disenio, cargando assets correctamente y dejando checkout y carrito en modo clasico."

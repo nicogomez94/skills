@@ -1,6 +1,6 @@
 ---
 name: wordpress-vps-production-deploy
-description: Deploy an existing WordPress project to production on a Linux VPS. Use when Codex must act as SRE/DevOps for WordPress on Ubuntu with nginx, PHP-FPM, MySQL or MariaDB, WP-CLI, WooCommerce, custom themes, production wp-config.php, safe permissions, aliases, smoke tests, and a repeatable deploy script, without Docker, Apache, panels, destructive git resets, or overwriting an existing WordPress install. Assume 1 GB RAM, keep resource use conservative, do not keep more than two background terminals active at once, keep the site/admin in Spanish when requested, and prefer WooCommerce block-based checkout over the classic shortcode checkout to avoid theme/CSS conflicts.
+description: Deploy an existing WordPress project to production on a Linux VPS. Use when Codex must act as SRE/DevOps for WordPress on Ubuntu with nginx, PHP-FPM, MySQL or MariaDB, WP-CLI, WooCommerce, custom themes, production wp-config.php, safe permissions, aliases, smoke tests, and a repeatable deploy script, without Docker, Apache, panels, destructive git resets, or overwriting an existing WordPress install. Assume 1 GB RAM, keep resource use conservative, do not keep more than two background terminals active at once, keep the site/admin in Spanish when requested, and prefer WooCommerce's classic shortcode Cart and Checkout pages over block-based pages to avoid theme, shipping, and local carrier compatibility issues.
 ---
 
 # WordPress VPS Production Deploy
@@ -24,7 +24,7 @@ Before changing the server:
   - `WP_ADMIN_EMAIL`: `admin@<domain>` if domain exists.
   - `WP_THEME_NAME`: use the provided value; if absent and `ferreteria-theme` exists, use `ferreteria-theme`.
 - If the project is meant for Spanish-speaking users, keep the WordPress admin, site language, product copy, and checkout flow in Spanish rather than mixing locales.
-- Prefer WooCommerce's block-based Cart and Checkout pages over shortcode-based checkout pages when the theme or CSS has compatibility risk.
+- Prefer WooCommerce's classic shortcode Cart and Checkout pages over block-based pages when the theme, shipping, or local carrier modules have compatibility risk.
 - Ask only if ambiguity could target the wrong app, domain, database, or theme.
 - Assume the VPS has only 1 GB RAM unless the user says otherwise.
 - Do not keep more than two background terminals or long-running sessions active at the same time. Prefer serial execution and close finished sessions promptly.
