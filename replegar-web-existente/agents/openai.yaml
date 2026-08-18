@@ -1,0 +1,4 @@
+interface:
+  display_name: "Replegar web existente"
+  short_description: "Replica sitios sin romper funciones ni datos"
+  default_prompt: "Usá $replegar-web-existente para duplicar y rebrandear este sitio en una carpeta y repositorio independientes."

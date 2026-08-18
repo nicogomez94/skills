@@ -36,6 +36,9 @@ Ground the design in four questions:
 - Compose layouts with asymmetry, overlap, diagonal flow, or controlled density when the concept supports it.
 - Create atmosphere with gradients, texture, grain, layered transparency, borders, and shadow treatment.
 - Avoid generic AI aesthetics, especially purple-on-white gradients, cookie-cutter cards, and copycat SaaS layouts.
+- Do not spend time inventing a logo when none is provided.
+- If the user does not provide a logo, use a simple text placeholder such as the brand name or initials and clearly note that the logo is missing.
+- Do not use `imagegen` or any other image generation workflow to fabricate a logo.
 - Make sure the hero never exceeds the visible viewport height on first load.
 - Keep the hero title, copy, CTAs, and any supporting visual fully contained within the initial viewport on common desktop sizes.
 - If the hero needs to be taller for visual reasons, reduce type scale, tighten spacing, or move supporting content below the fold instead of letting it overflow.
