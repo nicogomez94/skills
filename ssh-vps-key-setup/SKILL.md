@@ -1,6 +1,6 @@
 ---
 name: ssh-vps-key-setup
-description: Configure passwordless SSH key access for a new VPS. Use when the user wants Codex to generate a dedicated SSH key, install the public key on a remote VPS with a temporary password, verify key-based login, and add a permanent local shell alias in ~/.zshrc using absolute paths. Require the current request to provide the remote host, SSH port, SSH user, local alias, and temporary VPS password, or ask for the missing details before running commands.
+description: Configure passwordless SSH key access for a new VPS. Use when the user wants Codex to generate a dedicated SSH key, install the public key on a remote VPS with a temporary password, verify key-based login, add a permanent local shell alias in ~/.zshrc using absolute paths, and mirror the host in ~/.ssh/config. Require the current request to provide the remote host, SSH port, SSH user, local alias, and temporary VPS password, or ask for the missing details before running commands.
 ---
 
 # SSH VPS Key Setup
@@ -14,7 +14,8 @@ Use this skill to configure a VPS so the user can connect with a chosen local al
 3. Install only the public key in the VPS user's `~/.ssh/authorized_keys`.
 4. Verify login with the private key using `BatchMode=yes` and password authentication disabled.
 5. Add or replace a permanent alias in `~/.zshrc` that uses absolute paths for both the SSH binary and the identity file.
-6. In the final response, never print the private key. Report the exact command the user will run, normally the local alias.
+6. Add or replace a matching `Host` entry in `~/.ssh/config` with `HostName`, `User`, `Port`, `IdentityFile`, and `IdentitiesOnly yes`.
+7. In the final response, never print the private key. Report the exact command the user will run, normally the local alias or `ssh <host>`.
 
 ## Script
 
@@ -28,7 +29,7 @@ Prefer the bundled script for repeatability:
   --alias <local-alias>
 ```
 
-The script prompts for the temporary VPS password without echoing it. If automation is needed, use `--password-stdin` and provide the password over stdin; do not include the password in the final response.
+The script prompts for the temporary VPS password without echoing it. If automation is needed, use `--password-stdin` and provide the password over stdin; do not include the password in the final response. The script also updates `~/.ssh/config` with a matching host entry.
 
 ## Safety Notes
 

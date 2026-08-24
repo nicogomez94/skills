@@ -82,6 +82,7 @@ ssh_bin="$(command -v ssh)"
 ssh_dir="$HOME/.ssh"
 key_path="$ssh_dir/id_ed25519_${local_alias}"
 pub_path="${key_path}.pub"
+ssh_config="$ssh_dir/config"
 zshrc="$HOME/.zshrc"
 
 mkdir -p "$ssh_dir"
@@ -176,6 +177,52 @@ if [[ "$test_output" != "key-auth-ok" ]]; then
   exit 1
 fi
 
+touch "$ssh_config"
+chmod 600 "$ssh_config"
+
+tmp_ssh_config="$(mktemp)"
+awk -v host_name="$local_alias" -v host_block="$(
+  cat <<EOF
+Host ${local_alias}
+  HostName ${ip}
+  User ${remote_user}
+  Port ${port}
+  IdentityFile ${key_path}
+  IdentitiesOnly yes
+EOF
+)" '
+  function is_host_header(line) {
+    return line ~ /^Host[ \t]+/
+  }
+  BEGIN {
+    replaced = 0
+    skipping = 0
+  }
+  {
+    if (skipping) {
+      if (is_host_header($0)) {
+        skipping = 0
+        print host_block
+        replaced = 1
+        print
+      }
+      next
+    }
+    if ($0 ~ "^Host[ \t]+" host_name "([ \t]|$)") {
+      skipping = 1
+      next
+    }
+    print
+  }
+  END {
+    if (skipping || !replaced) {
+      print host_block
+    }
+  }
+' "$ssh_config" > "$tmp_ssh_config"
+
+mv "$tmp_ssh_config" "$ssh_config"
+
 alias_line="alias ${local_alias}='${ssh_bin} -i ${key_path} -p ${port} -o IdentitiesOnly=yes ${remote}'"
 touch "$zshrc"
 tmp_zshrc="$(mktemp)"
@@ -205,6 +252,7 @@ mv "$tmp_zshrc" "$zshrc"
 echo "SSH key created: $key_path"
 echo "Public key installed on: $remote"
 echo "Key login verified."
+echo "SSH config updated: $ssh_config"
 echo "Alias added to: $zshrc"
 echo "Run this command in a new terminal or after: source $zshrc"
 echo "Connect with: $local_alias"
