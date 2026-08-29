@@ -181,18 +181,23 @@ touch "$ssh_config"
 chmod 600 "$ssh_config"
 
 tmp_ssh_config="$(mktemp)"
-awk -v host_name="$local_alias" -v host_block="$(
-  cat <<EOF
-Host ${local_alias}
-  HostName ${ip}
-  User ${remote_user}
-  Port ${port}
-  IdentityFile ${key_path}
-  IdentitiesOnly yes
-EOF
-)" '
+awk \
+  -v host_name="$local_alias" \
+  -v host_ip="$ip" \
+  -v host_user="$remote_user" \
+  -v host_port="$port" \
+  -v host_identity="$key_path" \
+' 
   function is_host_header(line) {
     return line ~ /^Host[ \t]+/
+  }
+  function print_host_block() {
+    print "Host " host_name
+    print "  HostName " host_ip
+    print "  User " host_user
+    print "  Port " host_port
+    print "  IdentityFile " host_identity
+    print "  IdentitiesOnly yes"
   }
   BEGIN {
     replaced = 0
@@ -202,7 +207,7 @@ EOF
     if (skipping) {
       if (is_host_header($0)) {
         skipping = 0
-        print host_block
+        print_host_block()
         replaced = 1
         print
       }
@@ -216,7 +221,7 @@ EOF
   }
   END {
     if (skipping || !replaced) {
-      print host_block
+      print_host_block()
     }
   }
 ' "$ssh_config" > "$tmp_ssh_config"
@@ -249,10 +254,63 @@ awk -v alias_name="$local_alias" -v alias_line="$alias_line" '
 
 mv "$tmp_zshrc" "$zshrc"
 
+echo "Key-based SSH login verified. Installing Codex and skills on the VPS..." >&2
+
+"$ssh_bin" -i "$key_path" -p "$port" \
+  -o BatchMode=yes \
+  -o IdentitiesOnly=yes \
+  -o PasswordAuthentication=no \
+  -o StrictHostKeyChecking=accept-new \
+  -o ConnectTimeout=10 \
+  "$remote" 'bash -s' <<'REMOTE_BOOTSTRAP'
+set -euo pipefail
+
+if ! command -v npm >/dev/null 2>&1; then
+  if [[ "$(id -u)" -eq 0 ]] && command -v apt-get >/dev/null 2>&1; then
+    echo "npm not found. Installing nodejs and npm with apt-get..." >&2
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update
+    apt-get install -y nodejs npm
+  else
+    echo "Required remote tool not found: npm (automatic installation requires root and apt-get)." >&2
+    exit 1
+  fi
+fi
+
+for tool in npm curl bash; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "Required remote tool not found: $tool" >&2
+    exit 1
+  fi
+done
+
+remote_npm_prefix="$(npm prefix -g)"
+if [[ -n "$remote_npm_prefix" ]]; then
+  export PATH="$remote_npm_prefix/bin:$PATH"
+fi
+
+if ! npm install -g @openai/codex; then
+  user_npm_prefix="$HOME/.npm-global"
+  npm config set prefix "$user_npm_prefix"
+  export PATH="$user_npm_prefix/bin:$PATH"
+  npm install -g @openai/codex
+fi
+
+curl -fsSL https://raw.githubusercontent.com/nicogomez94/skills/main/install.sh | bash
+
+if ! command -v codex >/dev/null 2>&1; then
+  echo "Codex was installed but is not available on the remote PATH." >&2
+  exit 1
+fi
+
+echo "Remote Codex and skills installation completed."
+REMOTE_BOOTSTRAP
+
 echo "SSH key created: $key_path"
 echo "Public key installed on: $remote"
 echo "Key login verified."
 echo "SSH config updated: $ssh_config"
 echo "Alias added to: $zshrc"
+echo "Remote Codex and skills installation verified."
 echo "Run this command in a new terminal or after: source $zshrc"
 echo "Connect with: $local_alias"
