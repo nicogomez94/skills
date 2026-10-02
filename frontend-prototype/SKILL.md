@@ -1,6 +1,6 @@
 ---
 name: frontend-prototype
-description: "Crear prototipos y demos frontend para clientes en HTML, CSS y JavaScript puro, en español, con diseño responsive, Font Awesome, botón flotante de WhatsApp, animaciones de entrada por scroll en todas las secciones e integración lista para deploy en Render mediante render.yaml y Render CLI. Usar cuando el usuario pida una landing page, sitio web, componente demo o propuesta visual sin frameworks, especialmente si necesita una entrega rápida y presentable para clientes."
+description: "Crear prototipos y demos frontend para clientes en HTML, CSS y JavaScript puro, en español, con diseño responsive, Font Awesome, botón flotante de WhatsApp, animaciones de entrada por scroll en todas las secciones y publicación directa en Render Free mediante Render CLI. Usar cuando el usuario pida una landing page, sitio web, componente demo o propuesta visual sin frameworks, especialmente si necesita una entrega rápida y presentable para clientes."
 ---
 
 # Frontend Prototype
@@ -13,8 +13,8 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 
 1. Entender el negocio, el tono y las secciones necesarias.
 2. Elegir una dirección visual memorable, profesional y coherente.
-3. Construir `index.html`, `styles.css`, `main.js` y, si aplica, `render.yaml`.
-4. Si el proyecto tiene remoto Git y acceso a Render CLI, crear o desplegar el sitio en Render Free y devolver el enlace `onrender.com` en la respuesta final.
+3. Construir `index.html`, `styles.css` y `main.js`.
+4. Publicar directamente el sitio terminado en Render Free mediante Render CLI y devolver el enlace `onrender.com` en la respuesta final.
 5. Revisar accesibilidad, responsividad, consistencia del copy y que todas las secciones entren con animación al hacer scroll.
 
 ## Reglas
@@ -28,18 +28,26 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Diseñar mobile-first con breakpoints en `480px`, `768px` y `1024px`.
 - Animar con `IntersectionObserver` todas las secciones y bloques principales que se revelan al hacer scroll, usando una clase base como `.fade-in`.
 - Incluir un botón flotante de WhatsApp fijo en la esquina inferior derecha.
-- Mantener el prototipo listo para deploy estático en Render.
+- Mantener el prototipo listo para deploy estático directo en Render Free.
 - Asegurar que el hero inicial entre completo en el viewport en desktop y mobile; no debe desbordarse hacia abajo en la primera pantalla.
+- Si el hero incluye una marquesina, ticker, franja de anuncios o texto horizontal en movimiento, la marquesina cuenta dentro del alto total del hero y debe quedar visible al abrir la página junto con el resto del hero, sin exigir scroll vertical. Contabilizar header, marquesina, título, copy, CTAs, imagen y el espacio reducido de los navegadores móviles al definir la altura.
 - Limitar el tamaño del `h1`, el `line-height` y el `padding` del hero para evitar que el contenido principal quede por debajo del fold.
 - No usar `clamp()` para el tamaño de las fuentes del hero ni para los `h1`.
 - Definir tipografía del hero con tamaños fijos por media query en lugar de escalado fluido.
+
+### Marquesinas y tickers
+
+- Cuando haya una marquesina, debe ser un loop continuo con texto siempre visible. Renderizar como mínimo dos copias idénticas consecutivas del contenido (o un track repetido equivalente) y animar exactamente el ancho de una copia para que el reinicio sea imperceptible.
+- Nunca permitir que el track se desplace hacia un estado vacío, termine en un hueco blanco o deje visible un lateral sin texto. Repetir el contenido lo suficiente para cubrir el viewport en desktop ancho y mobile angosto.
+- No usar desvanecimientos laterales, máscaras de opacidad, gradientes que oculten los extremos ni una traslación de una sola pasada que haga desaparecer el texto. Se permite `overflow: hidden` únicamente en el contenedor de la marquesina para recortar el loop, nunca para generar scroll horizontal en toda la página.
+- La marquesina debe verse desde la carga inicial dentro del hero: no ubicarla debajo del fold, no ocultarla hasta que comience la animación y no dejar que un H1 o una imagen demasiado grande la empuje hacia abajo. Si falta espacio, compactar el hero o enviar contenido secundario debajo del fold.
+- Respetar `prefers-reduced-motion`: mantener el texto repetido visible y legible con una versión estática de ancho completo o el track pausado, sin ocultar la marquesina.
 
 ## Estructura esperada
 
 - `index.html`
 - `styles.css`
 - `main.js`
-- `render.yaml` desde `assets/render.yaml`
 
 ## Implementación
 
@@ -57,26 +65,29 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Mantener el botón de WhatsApp visible por encima del resto del contenido.
 - Ajustar el hero con altura máxima y espaciado contenido para que no exceda el alto visible, usando tamaños de fuente fijos por breakpoint.
 - Si el hero incluye imagen, ilustración o bloque de confianza, priorizar una composición compacta antes que un H1 gigante.
+- Si el hero incluye marquesina, probar la composición completa en alturas representativas de desktop y mobile: al abrir debe verse el hero entero y la marquesina debe mostrar texto de forma continua, sin huecos ni desapariciones laterales.
 
 ### JavaScript
 
 - Activar las animaciones con `IntersectionObserver`.
 - Aplicar animaciones de entrada a hero, secciones intermedias, tarjetas, CTA y cualquier bloque nuevo que aparezca en el scroll.
 - Reutilizar clases simples para estados visibles, menús o interacciones menores.
+- Para la marquesina, usar un track duplicado y una animación lineal infinita cuyo desplazamiento sea exactamente el ancho de una copia. Evitar animar el contenedor completo hacia fuera de pantalla o depender de una única cadena de texto.
 
 ### Despliegue en Render
 
-- Cuando el proyecto ya esté en un repositorio con remoto y el entorno tenga Render CLI, crear el servicio en Render Free desde el repo y no quedarse solo en el YAML.
+- Para cada prototipo web terminado, crear o configurar directamente el servicio en Render Free usando Render CLI; no generar un YAML intermedio.
 - Para prototipos estáticos, preferir `render services create --type static_site --plan free` con el `build` y el `publish` que correspondan al proyecto.
 - Si el servicio ya existe, usar `render deploys create <service_id> --wait` para disparar un redeploy y esperar el resultado.
 - Después del deploy, devolver en la respuesta el enlace vivo `onrender.com` o el enlace exacto que Render muestre para el servicio.
-- Si no hay remoto Git o no se puede autenticar Render CLI, dejar el `render.yaml` listo y explicarlo con claridad.
+- Si no hay remoto Git, Render CLI no está disponible o falta autenticación, explicar el bloqueo exacto y no inventar una URL. No crear como alternativa un `render.yaml`.
 
-## `render.yaml`
+### Commit y entrega
 
-- Copiar la plantilla desde `assets/render.yaml`.
-- Reemplazar `NOMBRE-DEL-PROYECTO` por un slug corto en minúsculas.
-- Mantener la configuración estática para una entrega simple en Render, pero usarla como base del despliegue libre y del URL final.
+- En cada llamado de esta skill que modifique archivos, terminar revisando `git status` y el diff, agregar únicamente los archivos correspondientes a ese llamado y crear un commit descriptivo y conciso.
+- Preservar los cambios ajenos del usuario; no usar `reset`, `checkout` ni staging amplio para limpiar el árbol de trabajo.
+- Verificar que el commit exista y que el repositorio quede listo para hacer `push`. No ejecutar `git push` salvo que el usuario lo pida explícitamente.
+- Si no hubo cambios, no crear un commit vacío. Si la carpeta no es un repositorio Git o no se puede crear el commit, informar el bloqueo exacto.
 
 ## Checklist final
 
@@ -85,5 +96,4 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Botón de WhatsApp funcional y visible en mobile
 - Animaciones de entrada en hero, secciones clave, tarjetas y CTA a medida que se hace scroll
 - Íconos de Font Awesome semánticos para el contexto
-- `render.yaml` incluido y con el nombre correcto
-- Deploy en Render Free realizado cuando el entorno lo permita, con URL viva devuelta al final
+- Deploy directo en Render Free realizado, con URL viva devuelta al final
