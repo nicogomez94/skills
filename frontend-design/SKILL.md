@@ -69,6 +69,8 @@ When implementing a full project:
 
 - For every completed web page or simple website, use Render Free as the default hosting target unless the user explicitly requests another provider.
 - Deploy the finished site directly with Render CLI and wait for the deployment to complete before finishing the task. For a static Vite build, use the appropriate build command and publish directory (normally `dist`); for a vanilla static page, publish the project root or its static output directory.
+- When the deliverable is a static page or static frontend, it is mandatory to deploy it as a Render Free Static Site through the CLI and return the live URL after the deployment finishes.
+- Use the Render CLI only for provisioning and deployment. Never use Playwright, browser automation, or the Render dashboard to create, deploy, or update the service; browser tools may be used only for optional visual verification after deployment.
 - If the Render service already exists, trigger a new deployment and wait for it to finish instead of creating a duplicate service.
 - Do not create, copy, suggest, or leave behind a `render.yaml` file for this workflow. Configure the service directly through Render CLI.
 - Return the live Render URL in the final response so the user can open the page immediately.

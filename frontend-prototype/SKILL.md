@@ -81,6 +81,8 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 ### Despliegue en Render
 
 - Para cada prototipo web terminado, crear o configurar directamente el servicio en Render Free usando Render CLI; no generar un YAML intermedio.
+- Si el resultado es una página estática o un frontend estático, es obligatorio publicarlo como Render Free Static Site mediante la CLI y devolver el enlace vivo cuando termine el deploy.
+- Usar únicamente Render CLI para crear, configurar, desplegar o actualizar el servicio. Nunca usar Playwright, automatización del navegador ni el dashboard de Render para hacer el deploy; el navegador solo puede usarse, si hace falta, para verificar visualmente el resultado ya publicado.
 - Para prototipos estáticos, preferir `render services create --type static_site --plan free` con el `build` y el `publish` que correspondan al proyecto.
 - Si el servicio ya existe, usar `render deploys create <service_id> --wait` para disparar un redeploy y esperar el resultado.
 - Después del deploy, devolver en la respuesta el enlace vivo `onrender.com` o el enlace exacto que Render muestre para el servicio.
