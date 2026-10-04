@@ -28,6 +28,9 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Diseñar mobile-first con breakpoints en `480px`, `768px` y `1024px`.
 - Animar con `IntersectionObserver` todas las secciones y bloques principales que se revelan al hacer scroll, usando una clase base como `.fade-in`.
 - Incluir un botón flotante de WhatsApp fijo en la esquina inferior derecha.
+- Incluir siempre en el footer el crédito `Hecho por [zigodev](https://zigodev.com.ar)`, con el enlace en una pestaña nueva mediante `target="_blank" rel="noopener noreferrer"`.
+- El crédito de ZigoDev debe quedar centrado horizontalmente en el medio del footer, en una fila propia de ancho completo y nunca dentro de la misma fila o esquina que el botón flotante de WhatsApp.
+- Reservar espacio inferior seguro, incluyendo `env(safe-area-inset-bottom)` cuando corresponda, para que el botón de WhatsApp fijo abajo a la derecha nunca tape ni se superponga visualmente con el crédito. Mantener el crédito en el flujo normal del documento, no con `position: fixed` o `position: absolute`.
 - Mantener el prototipo listo para deploy estático directo en Render Free.
 - Asegurar que el hero inicial entre completo en el viewport en desktop y mobile; no debe desbordarse hacia abajo en la primera pantalla.
 - Si el hero incluye una marquesina, ticker, franja de anuncios o texto horizontal en movimiento, la marquesina cuenta dentro del alto total del hero y debe quedar visible al abrir la página junto con el resto del hero, sin exigir scroll vertical. Contabilizar header, marquesina, título, copy, CTAs, imagen y el espacio reducido de los navegadores móviles al definir la altura.
@@ -63,6 +66,7 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Evitar paletas genéricas y elegir una combinación con personalidad.
 - Crear layouts fluidos, sin scroll horizontal y con buen contraste.
 - Mantener el botón de WhatsApp visible por encima del resto del contenido.
+- Mantener el footer de ancho completo y el crédito de ZigoDev centrado con `text-align: center`, dejando suficiente `padding-bottom` y área segura para el botón flotante de WhatsApp.
 - Ajustar el hero con altura máxima y espaciado contenido para que no exceda el alto visible, usando tamaños de fuente fijos por breakpoint.
 - Si el hero incluye imagen, ilustración o bloque de confianza, priorizar una composición compacta antes que un H1 gigante.
 - Si el hero incluye marquesina, probar la composición completa en alturas representativas de desktop y mobile: al abrir debe verse el hero entero y la marquesina debe mostrar texto de forma continua, sin huecos ni desapariciones laterales.
@@ -94,6 +98,7 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Contenido 100% en español
 - Diseño responsive sin scroll horizontal
 - Botón de WhatsApp funcional y visible en mobile
+- Crédito de ZigoDev centrado en el footer, sin quedar tapado por WhatsApp
 - Animaciones de entrada en hero, secciones clave, tarjetas y CTA a medida que se hace scroll
 - Íconos de Font Awesome semánticos para el contexto
 - Deploy directo en Render Free realizado, con URL viva devuelta al final

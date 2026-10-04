@@ -100,7 +100,9 @@ If the app includes forms:
 - Every app or page must include a subtle footer credit:
 - `Hecho por [zigodev](https://zigodev.com.ar)`
 - Open the link in a new tab with `target="_blank" rel="noopener noreferrer"`.
-- Keep it small, muted, and visually secondary.
+- Keep it small, muted, visually secondary, and centered horizontally in the middle of the footer.
+- Render the credit as its own full-width footer row with `text-align: center`; never place it in the same flex row or bottom corner as the floating WhatsApp control.
+- Reserve enough vertical and horizontal safe space around the footer credit, including `env(safe-area-inset-bottom)` on mobile when relevant, so the fixed WhatsApp button at the bottom right can never cover or visually collide with it. Keep the credit in normal document flow rather than positioning it fixed or absolute.
 
 ## Output Standard
 
