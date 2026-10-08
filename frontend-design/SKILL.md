@@ -36,6 +36,7 @@ Ground the design in four questions:
 - Compose layouts with asymmetry, overlap, diagonal flow, or controlled density when the concept supports it.
 - Create atmosphere with gradients, texture, grain, layered transparency, borders, and shadow treatment.
 - Avoid generic AI aesthetics, especially purple-on-white gradients, cookie-cutter cards, and copycat SaaS layouts.
+- Eyebrows are allowed as short textual labels, but never add decorative numeric prefixes or counters such as `01 / Nuestra esencia`, `02 / Servicios`, or similar number-slash patterns.
 - Do not spend time inventing a logo when none is provided.
 - If the user does not provide a logo, use a simple text placeholder such as the brand name or initials and clearly note that the logo is missing.
 - Do not use `imagegen` or any other image generation workflow to fabricate a logo.

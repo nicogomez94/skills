@@ -22,6 +22,7 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Mantener todo el contenido visible en español.
 - Usar HTML5, CSS3 y JavaScript vanilla, sin frameworks ni build steps.
 - Incluir Font Awesome 6 Free desde CDN cuando ayude al contexto visual.
+- Se pueden usar eyebrows como etiquetas textuales breves, pero nunca agregar numeritos decorativos ni formatos de número y barra como `01 / Nuestra esencia`, `02 / Servicios` o similares.
 - No dedicar tiempo a inventar un logo si el usuario no lo entrega.
 - Si no hay logo provisto, usar un placeholder textual simple con el nombre o iniciales de la marca y aclarar que falta el logo.
 - No usar `imagegen` ni ningún flujo de generación de imágenes para crear un logo ficticio.
