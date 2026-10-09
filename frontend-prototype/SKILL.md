@@ -72,6 +72,14 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Si el hero incluye imagen, ilustración o bloque de confianza, priorizar una composición compacta antes que un H1 gigante.
 - Si el hero incluye marquesina, probar la composición completa en alturas representativas de desktop y mobile: al abrir debe verse el hero entero y la marquesina debe mostrar texto de forma continua, sin huecos ni desapariciones laterales.
 
+### Formato y editabilidad del código
+
+- Mantener siempre `index.html` y `styles.css` bien formateados, legibles y fáciles de editar directamente. Usar indentación consistente de dos espacios en todo el proyecto.
+- Nunca minificar, comprimir, ofuscar ni convertir el HTML o CSS en bloques gigantes de una sola línea. Dejar cada elemento lógico en líneas claras, anidar con sangría y alinear correctamente las etiquetas de cierre.
+- En `index.html`, conservar una jerarquía semántica visible; separar las secciones con saltos de línea y comentarios breves cuando ayuden a ubicar cada bloque.
+- En `styles.css`, escribir un selector por bloque, una declaración por línea, separar visualmente cada sección y ordenar de forma clara variables, reset, layout, componentes, estados y media queries.
+- Usar nombres de clases descriptivos y reglas simples, evitando estilos inline extensos o código generado difícil de mantener. Si ya existe un formateador en el proyecto, ejecutarlo antes de entregar; si no, aplicar estas convenciones manualmente sin agregar dependencias solo para formatear.
+
 ### JavaScript
 
 - Activar las animaciones con `IntersectionObserver`.

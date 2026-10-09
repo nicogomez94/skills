@@ -66,6 +66,14 @@ When implementing a full project:
 - Avoid oversized H1s that push hero content below the fold on standard laptop viewport heights.
 - When a hero has a marquee, verify the complete first-screen composition at representative desktop and mobile viewport heights. The marquee must be inside the visible hero on initial load, and its loop must continuously show text with no blank interval or disappearing tail.
 
+### Code formatting and editability
+
+- Keep all HTML/JSX and CSS human-readable, consistently indented, and easy to edit directly. Use consistent two-space indentation throughout the project.
+- Never minify, obfuscate, collapse, or generate HTML/JSX/CSS as giant one-line blocks. Keep one logical element per line, align nested closing tags, and wrap long attribute lists across readable lines.
+- In CSS, keep one selector block per logical component or section, one declaration per line, blank lines between sections, and clear comments or headings for major areas such as variables, reset, layout, components, responsive rules, and states.
+- Prefer clear semantic class names, CSS variables, and small maintainable rules over opaque generated names or duplicated declarations. Keep styles in the appropriate stylesheet or CSS Module instead of scattering large inline style objects.
+- If the project already provides a formatter, run it before delivery; otherwise apply the same formatting conventions manually without adding a formatting dependency solely for this purpose.
+
 ### Render deployment
 
 - For every completed web page or simple website, use Render Free as the default hosting target unless the user explicitly requests another provider.
