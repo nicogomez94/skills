@@ -119,3 +119,13 @@ If the app includes forms:
 ## Output Standard
 
 Deliver production-grade code that is cohesive, responsive, accessible, and visually memorable. Match implementation complexity to the chosen aesthetic: restraint for minimalism, richness for maximalism, precision for refined designs.
+
+## Hosting, verification, and deployment cadence
+
+- Treat Render deployments as client previews or test environments. Render is not the production host for this workflow.
+- Treat an app deployed on a VPS as production, especially on the user's VPS configured as hosting in Codex. When production publishing is requested for a VPS app, push the changes and deploy to that VPS, following the `vps-production-deploy` skill and its hosting-specific rules exactly. Never overwrite or disrupt other sites on the server.
+- After local changes are complete, run the checks appropriate to their scope and confirm the app works locally. Run Playwright locally when a visual or functional check is needed; avoid repeating checks that already cover the same behavior. Run a local production build when it is relevant to the change.
+- Never use Playwright against production during development.
+- Do not poll, sleep, or repeatedly wait to monitor deployments. For a requested publication, deploy and check deployment status once. If deploying to Render, do not wait for the published site or re-test it in production; return the link for the user to verify. After a VPS production deploy, report the result without redundant full test cycles unless an error or sensitive change requires them.
+- Minimize tool calls, lengthy logs, and redundant verification while preserving the checks relevant to the change.
+- This policy takes precedence over earlier instructions in this skill to wait for Render deployments, use `--wait`, or verify a deployed site; perform relevant checks locally and check deployment status once when publishing.

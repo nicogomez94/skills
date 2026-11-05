@@ -114,3 +114,13 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Animaciones de entrada en hero, secciones clave, tarjetas y CTA a medida que se hace scroll
 - Íconos de Font Awesome semánticos para el contexto
 - Deploy directo en Render Free realizado, con URL viva devuelta al final
+
+## Hosting, verificación y ritmo de despliegue
+
+- Considerar los despliegues en Render como entornos de prueba o vista previa para clientes. Render no es el hosting de producción de este flujo.
+- Considerar producción a toda aplicación desplegada en un VPS, especialmente en el VPS del usuario configurado como hosting en Codex. Cuando se solicite publicar en producción una aplicación alojada en un VPS, hacer push y desplegar allí siguiendo exactamente la skill `vps-production-deploy` y sus reglas específicas de hosting. No sobrescribir ni afectar los otros sitios del servidor.
+- Al terminar los cambios locales, ejecutar las comprobaciones que correspondan a su alcance y confirmar que la aplicación funciona localmente. Usar Playwright local cuando el cambio requiera una comprobación visual o funcional, evitando repetir comprobaciones que cubran el mismo comportamiento. Ejecutar un build local de producción cuando sea pertinente.
+- No usar Playwright contra producción durante el desarrollo.
+- No hacer polling, usar `sleep` ni esperar repetidamente para monitorear despliegues. Cuando se solicite publicar, desplegar y comprobar el estado una sola vez. Si se despliega en Render, no esperar a que se publique para volver a probar el sitio en producción: devolver el enlace para que el usuario lo verifique. Después de un deploy de producción en VPS, informar el resultado sin repetir ciclos completos de pruebas, salvo que haya errores o cambios sensibles que lo justifiquen.
+- Minimizar las llamadas a herramientas, los logs extensos y las verificaciones redundantes sin sacrificar las comprobaciones pertinentes para cada cambio.
+- Esta política prevalece sobre instrucciones anteriores de esta skill que indiquen esperar el deploy en Render, usar `--wait` o verificar el sitio desplegado: hacer las comprobaciones pertinentes en local y consultar el estado del deploy una sola vez al publicar.
