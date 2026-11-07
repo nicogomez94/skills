@@ -125,3 +125,7 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 - Minimizar las llamadas a herramientas, los logs extensos y las verificaciones redundantes sin sacrificar las comprobaciones pertinentes para cada cambio.
 - Esta política prevalece sobre instrucciones anteriores de esta skill que indiquen esperar el deploy en Render, usar `--wait` o verificar el sitio desplegado: hacer las comprobaciones pertinentes en local y consultar el estado del deploy una sola vez al publicar.
 - Siempre incluir en la entrega final la URL de la aplicación local (`http://localhost:<puerto>`). Iniciar o dejar activo el servidor local cuando sea práctico; si el puerto preferido está ocupado, buscar y usar otro disponible e informar la URL exacta.
+
+## Profundidad visual en todas las secciones
+
+- Dar profundidad visual a todas las secciones de la landing; evitar que la página sea una sucesión de fondos planos de un solo color. Usar círculos u otras formas intencionales detrás de títulos y textos, capas de color, texturas, gradientes o elementos superpuestos para aportar dinamismo y profundidad. Variar los recursos entre secciones y mantenerlos detrás del contenido, cuidando el contraste, la jerarquía y la legibilidad.

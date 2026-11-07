@@ -130,3 +130,7 @@ Deliver production-grade code that is cohesive, responsive, accessible, and visu
 - Minimize tool calls, lengthy logs, and redundant verification while preserving the checks relevant to the change.
 - This policy takes precedence over earlier instructions in this skill to wait for Render deployments, use `--wait`, or verify a deployed site; perform relevant checks locally and check deployment status once when publishing.
 - Always provide the local app URL (`http://localhost:<port>`) in the final handoff. Start or keep the local app server running when practical; if the preferred port is occupied, find and use another available port, then report the exact URL.
+
+## Visual depth across landing page sections
+
+- Give every landing page section visual depth; do not leave the page as a sequence of flat, single-color backgrounds. Use circles or other deliberate shapes behind headings and text, layered color fields, texture, gradients, or overlapping elements to create movement and depth. Keep these treatments varied and subordinate to readable content, with enough contrast and spacing for clear hierarchy.
