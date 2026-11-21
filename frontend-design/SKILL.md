@@ -66,6 +66,17 @@ When implementing a full project:
 - Avoid oversized H1s that push hero content below the fold on standard laptop viewport heights.
 - When a hero has a marquee, verify the complete first-screen composition at representative desktop and mobile viewport heights. The marquee must be inside the visible hero on initial load, and its loop must continuously show text with no blank interval or disappearing tail.
 
+## Database hosting rule
+
+- Before coding or deploying, check whether the requested site needs a database and whether the user asked to publish it on Render. If both are true, pause before continuing the implementation, pushing code, or deploying. Tell the user clearly that, for their hosting setup, Render is not an option for database-backed sites and the project needs one of the hosting providers they manage. Do not upload or deploy the project to Render, and do not silently choose another host. Ask which of their managed hosts to use, then continue once that destination is clear. This user-specific hosting rule overrides the general Render deployment workflow below; it does not claim that Render can never offer database services in other setups.
+- If the requested site needs a database but Render was not requested, follow the hosting destination the user specified. If no destination is specified, ask where to host it before publishing; never assume Render for a database-backed site.
+
+## Admin panel item and image uploads
+
+- Whenever a site includes an admin panel that manages products, catalog entries, or other records with uploaded content, make the create/edit flow explicit and reviewable. The panel's add/upload button must open a modal containing the editable fields; do not immediately save or upload an item when that button is clicked. Provide clear save/upload and cancel actions, and let the user review and edit the item before saving.
+- For any item that supports multiple images, always build a thumbnail manager with visible previews. After image selection, show each thumbnail and let the admin choose which image is the cover, change the image order (for example, by dragging thumbnails or using move controls), and remove images. Make the selected cover and the current order obvious, and update the previews when images are added, reordered, or removed. Preserve this image management when editing existing items as well as creating new ones.
+- Keep these controls usable on touch screens and keyboard accessible. Validate supported file types and sizes and show useful feedback for invalid files; do not make a successful-looking save when the item or its image changes failed to persist.
+
 ### Code formatting and editability
 
 - Keep all HTML/JSX and CSS human-readable, consistently indented, and easy to edit directly. Use consistent two-space indentation throughout the project.
@@ -76,14 +87,14 @@ When implementing a full project:
 
 ### Render deployment
 
-- For every completed web page or simple website, use Render Free as the default hosting target unless the user explicitly requests another provider.
-- Deploy the finished site directly with Render CLI and wait for the deployment to complete before finishing the task. For a static Vite build, use the appropriate build command and publish directory (normally `dist`); for a vanilla static page, publish the project root or its static output directory.
-- When the deliverable is a static page or static frontend, it is mandatory to deploy it as a Render Free Static Site through the CLI and return the live URL after the deployment finishes.
+- For every completed web page or simple website that does not need a database, use Render Free as the default hosting target unless the user explicitly requests another provider. For database-backed sites, follow the Database hosting rule above.
+- For projects permitted to use Render, deploy the finished site directly with Render CLI and wait for the deployment to complete before finishing the task. For a static Vite build, use the appropriate build command and publish directory (normally `dist`); for a vanilla static page, publish the project root or its static output directory.
+- When the deliverable is a static page or static frontend that does not need a database, deploy it as a Render Free Static Site through the CLI and return the live URL after the deployment finishes.
 - If a GitHub or other Git repository is created for the Render deployment, create it as a public repository from the start; never create a private repository for this workflow. Do not change the visibility of an existing private repository without explicit authorization.
 - Use the Render CLI only for provisioning and deployment. Never use Playwright, browser automation, or the Render dashboard to create, deploy, or update the service; browser tools may be used only for optional visual verification after deployment.
 - If the Render service already exists, trigger a new deployment and wait for it to finish instead of creating a duplicate service.
 - Do not create, copy, suggest, or leave behind a `render.yaml` file for this workflow. Configure the service directly through Render CLI.
-- Return the live Render URL in the final response so the user can open the page immediately.
+- For a Render deployment, return the live Render URL in the final response so the user can open the page immediately.
 - If deployment cannot be completed because the project has no Git remote, Render CLI is unavailable, or authentication is missing, report the exact blocker and do not fabricate a URL. Do not fall back to generating `render.yaml`.
 
 ### Commit and handoff
