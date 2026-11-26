@@ -145,3 +145,9 @@ Deliver production-grade code that is cohesive, responsive, accessible, and visu
 ## Visual depth across landing page sections
 
 - Give every landing page section visual depth; do not leave the page as a sequence of flat, single-color backgrounds. Use circles or other deliberate shapes behind headings and text, layered color fields, texture, gradients, or overlapping elements to create movement and depth. Keep these treatments varied and subordinate to readable content, with enough contrast and spacing for clear hierarchy.
+
+## Debug mode for admin systems
+
+- Every application or system with an admin panel must include an explicit boolean `DEBUG` mode that can be set to `true` or `false`. For Vite applications, derive it from `import.meta.env.VITE_DEBUG === 'true'`; enable it by default in local `.env.local` and keep that file out of Git.
+- When `DEBUG` is `true`, prefill every form that can reasonably be populated, including create/edit screens, filters, settings, and search forms, with realistic fake test data. Keep the values editable and do not submit forms automatically. Store the defaults centrally in `debugDefaults.ts` or `debugDefaults.js`.
+- When `DEBUG` is `false`, do not inject or prefill debug data; leave fields empty unless the product itself requires a legitimate non-debug default. Never use real customer data as debug defaults.

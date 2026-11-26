@@ -129,3 +129,9 @@ Crear prototipos web convincentes y listos para mostrar a clientes usando solo H
 ## Profundidad visual en todas las secciones
 
 - Dar profundidad visual a todas las secciones de la landing; evitar que la página sea una sucesión de fondos planos de un solo color. Usar círculos u otras formas intencionales detrás de títulos y textos, capas de color, texturas, gradientes o elementos superpuestos para aportar dinamismo y profundidad. Variar los recursos entre secciones y mantenerlos detrás del contenido, cuidando el contraste, la jerarquía y la legibilidad.
+
+## Modo debug para sistemas con administración
+
+- Todo sistema o aplicación con panel de administración debe tener un modo booleano explícito `DEBUG`, configurable como `true` o `false`. En prototipos vanilla, definirlo centralmente en `main.js` (por ejemplo, `const DEBUG = true;`) para que se pueda cambiar con facilidad.
+- Cuando `DEBUG` sea `true`, autorrellenar todos los formularios que se puedan completar, incluidos los de alta/edición, filtros, configuración y búsqueda, con datos ficticios realistas para probar. Mantener los campos editables y no enviar formularios automáticamente. Centralizar los datos de prueba en `debugDefaults.js`.
+- Cuando `DEBUG` sea `false`, no insertar ni precargar datos de debug; dejar los campos vacíos salvo que el producto requiera un valor inicial legítimo. No usar datos reales de clientes como datos de prueba.
